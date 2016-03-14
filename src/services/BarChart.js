@@ -1,24 +1,41 @@
-app.factory('BarChart', ['Chart', function(Chart) {
-    return function(options){
-        var options = options || {};
-        var barChart = new Chart(options);
+(function () {
 
-        var bars = options.data || [];
+    'use strict';
+    app.factory('BarChart', ['Chart', function(Chart) {
+        return function(options){
+            var options = options || {};
+            var barChart = new Chart(options);
 
-        var barWidth = barChart.width/bars.length -5;
+            var bars = options.data || [];
+            var barWidth = barChart.width / bars.length -5;
 
-        //create the bars
-        for(var bar in bars){
-            var x = (barWidth * bar) + 5 * bar;
+            var barMaxHeight = _.max(bars, function(bar){
+                return bar.value;
+            }).value;
 
-            var y = barChart.height - bars[bar].value;
+            var ratio = barMaxHeight / barChart.height;
 
-            var height = bars[bar].value;
+            var x,
+                y,
+                height;
 
-            barChart.rect(x, y, barWidth, height).attr("fill", "#f00");
-        }
+            //create the chart elements
+            for(var bar in bars){
+                x = (barWidth * bar) + 5 * bar;
 
-        return barChart;
-    };
+                //normalise data http://stackoverflow.com/questions/13368046/how-to-normalize-a-list-of-positive-numbers-in-javascript
+                height = bars[bar].value / ratio;
+                y = barChart.height - height;
 
-}]);
+                //render bar
+                barChart.rect(x, y, barWidth, height).attr("fill", "#FF7B26").attr("stroke-width", 0);
+
+                //render label
+                barChart.text(x + barWidth/2, barChart.height - 10, bars[bar].name).attr({fill: "#000"});
+            }
+
+            return barChart;
+        };
+
+    }]);
+}());
