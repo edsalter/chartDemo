@@ -1,0 +1,23 @@
+<html>
+
+    <head>
+
+    </head>
+
+    <body ng-app="chartDemoRaphael" ng-controller="appController">
+        <textarea ng-model="userData"></textarea>
+
+        <br />
+
+        <div bar-chart user-data="userData" id="barChart1" ></div>
+
+        <button ng-click="reset()">Reset data</button>
+
+        <script type="text/javascript" src="bower_components/raphael/raphael.js"></script>
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="src/main.js"></script>
+        <script type="text/javascript" src="src/services/BarChart.js"></script>
+        <script type="text/javascript" src="src/services/Chart.js"></script>
+        <script type="text/javascript" src="src/directives/BarChart.js"></script>
+    </body>
+</html>
