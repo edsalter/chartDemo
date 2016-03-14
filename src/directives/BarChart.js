@@ -5,8 +5,8 @@ app.directive('barChart',["BarChart", function(BarChart) {
         replace: 'true',
         template: '<div><br /><br /><button ng-click="updateChart()">Refresh</button></div>',
         scope: {
-            xLabel: "@",
-            yLabel: "@",
+            labelX: "@",
+            labelY: "@",
             width: "@",
             height: "@",
             id: "@",
@@ -14,6 +14,11 @@ app.directive('barChart',["BarChart", function(BarChart) {
         },
         link: function(scope) {
             var parsedUserData = [];
+
+            var width = scope.width || 400,
+                height = scope.height || 300,
+                labelX = scope.labelX || "x",
+                labelY = scope.labelY || "y";
 
             //update chart with latest data
             scope.updateChart = function () {
@@ -30,10 +35,12 @@ app.directive('barChart',["BarChart", function(BarChart) {
                 }
 
                 scope.chart = new BarChart({
-                    width: 320,
-                    height: 200,
+                    width: width,
+                    height: height,
                     id: scope.id,
-                    data:parsedUserData
+                    data:parsedUserData,
+                    labelX: labelX,
+                    labelY: labelY
                 });
             }
 
