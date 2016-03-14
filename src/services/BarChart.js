@@ -18,20 +18,18 @@
 
             var ratio = barMaxSize / barChart.height;
 
-            var x,
-                y,
-                barHeight,
-                chartBottomPadding = 30,
-                chartLeftPadding = 30;
-
             var labelValue = barChart.text(40, 40, "").attr({fill: "#000"});
 
-            //create the chart's bars
-            for(var i=0; i < bars.length; i++){
-                x = ((barWidth * i) + 5 * i) + chartLeftPadding;
+            var chartBottomPadding = 30,
+                chartLeftPadding = 30;
+            
+            function createBar(inputBar){
+                var y,
+                    barHeight,
+                    x = ((barWidth * i) + 5 * i) + chartLeftPadding;
 
                 //normalise data http://stackoverflow.com/questions/13368046/how-to-normalize-a-list-of-positive-numbers-in-javascript
-                barHeight = bars[i].value / ratio;
+                barHeight = inputBar.value / ratio;
 
                 console.log(barHeight)
                 y = barChart.height - barHeight - chartBottomPadding;
@@ -41,15 +39,22 @@
 
                 //Show value of bar on hover
                 bar.hover(function(e){
-                    console.log(this.value);
-                    labelValue = labelValue.attr({text: this.name + ": " + this.value}).toFront();
-                },
-                function(e){
-                    labelValue = labelValue.attr({text: ""});
-                }, bars[i]);
+                        console.log(this.value);
+                        labelValue = labelValue.attr({text: this.name + ": " + this.value}).toFront();
+                    },
+                    function(e){
+                        labelValue = labelValue.attr({text: ""});
+                    }, inputBar);
 
                 //render label
-                barChart.text(x + barWidth/2, barChart.height - 15, bars[i].name).attr({fill: "#000"});
+                barChart.text(x + barWidth/2, barChart.height - 15, inputBar.name).attr({fill: "#000"});
+            }
+
+            var barsCache = [];
+
+            //create the chart's bars
+            for(var i=0; i < bars.length; i++){
+                barsCache.push(new createBar(bars[i]));
             }
 
             return barChart;
