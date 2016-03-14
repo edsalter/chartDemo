@@ -1,16 +1,24 @@
 <html>
 
     <head>
-
+        <style type="text/css">
+            .chart{
+                text-align: center;
+                display: block;
+            }
+        </style>
     </head>
 
     <body ng-app="chartDemoRaphael" ng-controller="appController">
-        <textarea ng-model="userData"></textarea>
+
+        <bar-chart class="chart" user-data="userData" id="chart1" label-y="Y label" label-x="Label x" bar-color="#ccc"></bar-chart>
+
+        <bar-chart class="chart" user-data="userData2" id="chart2" width="800" height="400" label-y="Y label" label-x="Label x"></bar-chart>
 
         <br />
 
-        <bar-chart user-data="userData" id="barChart1" width="600" height="400" label-y="Y label" label-x="Label x"></bar-chart>
-
+        <textarea ng-model="userData"></textarea>
+        <br />
         <button ng-click="reset()">Reset data</button>
 
         <!-- TODO setup grunt script -->
