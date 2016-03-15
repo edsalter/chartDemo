@@ -2,6 +2,10 @@
 
 Create a bar graph by using Angular directive
 
+Demo
+[http://edsalter.com/uploads/code/chartDemo/](http://edsalter.com/uploads/code/chartDemo/)
+
+
 ```html
 <bar-chart user-data="userData" id="barChart1" width="600" height="400" label-y="Y label" label-x="Label x"></bar-chart>
 ```
