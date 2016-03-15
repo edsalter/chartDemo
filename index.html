@@ -7,22 +7,30 @@
                 display: block;
             }
         </style>
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+
     </head>
 
     <body ng-app="chartDemoRaphael" ng-controller="appController">
+        <div class="page-header">
+            <h1 class="text-center">Bar chart demo, using Angular.JS directives</h1>
+        </div>
 
+        <h2 class="text-center">Chart 1</h2>
         <bar-chart class="chart" user-data="userData" id="chart1" label-y="Popularity" label-x="Animals" bar-color="#ccc"></bar-chart>
 
+        <h2 class="text-center">Chart 2</h2>
         <bar-chart class="chart" user-data="userData2" id="chart2" width="800" height="400" label-y="Y label" label-x="Label x" show-axis-values="true"></bar-chart>
 
         <br />
 
         <h3>Chart 1 data</h3>
-        <textarea ng-model="userData"></textarea>
+        <textarea class="form-control" rows="5" ng-model="userData"></textarea>
         <br />
 
         <h3>Chart 2 data</h3>
-        <textarea ng-model="userData2"></textarea>
+        <textarea class="form-control" rows="5" ng-model="userData2"></textarea>
 
         <!-- TODO setup grunt script -->
         <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>

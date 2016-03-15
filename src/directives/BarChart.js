@@ -2,7 +2,7 @@
 app.directive('barChart',["BarChart", function(BarChart) {
     return {
         restrict: 'AE',
-        template: '<div><br /><br /><button ng-click="updateChart()">Refresh {{id}}</button></div>',
+        template: '<div><br /><br /><button class="btn btn-default" ng-click="updateChart()">Refresh {{id}}</button></div>',
         scope: {
             labelX: "@",
             labelY: "@",
